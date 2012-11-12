@@ -8,7 +8,7 @@ end
 
 # Line Items
 bounding_box [0,cursor], :width => 540, :height => 430 do
-  move_down 2
+
   header =  [Prawn::Table::Cell.new( :text => t(:sku), :font_style => :bold),
                 Prawn::Table::Cell.new( :text => t(:item_description), :font_style => :bold ) ]
   header <<  Prawn::Table::Cell.new( :text => t(:options), :font_style => :bold ) 
@@ -25,10 +25,7 @@ bounding_box [0,cursor], :width => 540, :height => 430 do
     :column_widths => @column_widths ,
     :align => @align
 
-  move_down 4
-
   bounding_box [0,cursor], :width => 540 do
-    move_down 2
     content = []
     @order.line_items.each do |item|
       row = [ item.variant.product.sku, item.variant.product.name]
@@ -38,7 +35,6 @@ bounding_box [0,cursor], :width => 540, :height => 430 do
       row << number_to_currency(item.price * item.quantity) unless @hide_prices
       content << row
     end
-
 
     table content,
       :position           => :center,
