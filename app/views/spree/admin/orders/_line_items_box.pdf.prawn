@@ -1,10 +1,7 @@
-if @hide_prices
-  @column_widths = { 0 => 100, 1 => 165, 2 => 75, 3 => 75 } 
-  @align = { 0 => :left, 1 => :left, 2 => :right, 3 => :right }
-else
+
   @column_widths = { 0 => 75, 1 => 205, 2 => 75, 3 => 50, 4 => 75, 5 => 60 } 
   @align = { 0 => :left, 1 => :left, 2 => :left, 3 => :right, 4 => :right, 5 => :right}
-end
+
 
 # Line Items
 bounding_box [0,cursor], :width => 540, :height => 430 do
@@ -12,9 +9,9 @@ bounding_box [0,cursor], :width => 540, :height => 430 do
   header =  [Prawn::Table::Cell.new( :text => t(:sku), :font_style => :bold),
                 Prawn::Table::Cell.new( :text => t(:item_description), :font_style => :bold ) ]
   header <<  Prawn::Table::Cell.new( :text => t(:options), :font_style => :bold ) 
-  header <<  Prawn::Table::Cell.new( :text => t(:price), :font_style => :bold ) unless @hide_prices
+  header <<  Prawn::Table::Cell.new( :text => t(:price), :font_style => :bold )
   header <<  Prawn::Table::Cell.new( :text => t(:qty), :font_style => :bold, :align => 1 )
-  header <<  Prawn::Table::Cell.new( :text => t(:total), :font_style => :bold ) unless @hide_prices
+  header <<  Prawn::Table::Cell.new( :text => t(:total), :font_style => :bold )
     
   table [header],
     :position           => :center,
@@ -30,9 +27,9 @@ bounding_box [0,cursor], :width => 540, :height => 430 do
     @order.line_items.each do |item|
       row = [ item.variant.product.sku, item.variant.product.name]
       row << item.variant.option_values.map {|ov| "#{ov.option_type.presentation}: #{ov.presentation}"}.concat(item.respond_to?('ad_hoc_option_values') ? item.ad_hoc_option_values.map {|pov| "#{pov.option_value.option_type.presentation}: #{pov.option_value.presentation}"} : []).join(', ')
-      row << number_to_currency(item.price) unless @hide_prices
+      row << number_to_currency(item.price) 
       row << item.quantity
-      row << number_to_currency(item.price * item.quantity) unless @hide_prices
+      row << number_to_currency(item.price * item.quantity) 
       content << row
     end
 
@@ -52,7 +49,7 @@ bounding_box [0,cursor], :width => 540, :height => 430 do
     render :partial => "bye" unless @hide_prices
   end
 
-  render :partial => "totals" unless @hide_prices
+  render :partial => "totals"
   
   move_down 2
 
