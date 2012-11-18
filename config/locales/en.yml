@@ -8,10 +8,11 @@ en:
   footer_right: "Tenbugs.com"
   footer_right2: " "
   
-  print_note: Thanks for buying on Tenbugs.com
+  print_note: "Thanks for buying on Tenbugs.com, if you have any enquires you could contact us at support@tenbugs.com"
   ship_to: Ship to
   
   invoice_print: Print Invoice
   packaging_slip_print: Print Slip
   packaging_slip: Packaging Slip
   
+  order_date: Order Date

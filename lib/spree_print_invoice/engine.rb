@@ -6,9 +6,9 @@ module SpreePrintInvoice
       Spree::PrintInvoice::Config = Spree::PrintInvoiceConfiguration.new
     end
     
-    initializer "spree.print_invoice.mimetypes" do |app|
-      Mime::Type.register 'application/pdf', :pdf
-    end
+    # initializer "spree.print_invoice.mimetypes" do |app|
+    #   Mime::Type.register 'application/pdf', :pdf
+    # end
     
     def self.activate
 
