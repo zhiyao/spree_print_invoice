@@ -8,7 +8,7 @@ anonymous = @order.email =~ /@example.net$/
 bounding_box [0,600], :width => 540 do
   move_down 2
   data = [[Prawn::Table::Cell.new( :text => I18n.t(:billing_address), :font_style => :bold ),
-                Prawn::Table::Cell.new( :text =>I18n.t(:shipping_address), :font_style => :bold )]]
+           Prawn::Table::Cell.new( :text => I18n.t(:shipping_address), :font_style => :bold )]]
 
   table data,
     :position           => :center,
